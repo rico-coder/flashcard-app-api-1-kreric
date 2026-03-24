@@ -9,7 +9,7 @@ export default function DeckDetailScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text style={{ fontSize: 24 }}>Deck Detail: {deckId}</Text>
-      <Button title="Zurück" onPress={() => router.push('/../')}/>
+      <Button title="Zurück" onPress={() => router.push('/')}/>
     </View>
   );
 }
