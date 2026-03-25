@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, Alert } from 'react-native';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './styles';
 
 export default function CreateDeckScreen() {
     const [title, setTitle] = useState('');
@@ -44,18 +45,3 @@ export default function CreateDeckScreen() {
         </View>
   );
 }
-
-const styles = StyleSheet.create({
-    input: {
-        backgroundColor: '#E0E0E0',
-        borderWidth: 1,
-        borderColor: '#CCC',
-        borderRadius: 5,
-        fontSize: 16,
-        color: '#000',
-        width: 200,
-        marginBottom: 10,
-        marginTop: 10,
-        padding: 5,
-    },
-});
