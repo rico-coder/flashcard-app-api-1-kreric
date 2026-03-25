@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../styles';
 
 export default function DeckDetailScreen() {
   const { deckId } = useLocalSearchParams();
@@ -21,7 +22,7 @@ export default function DeckDetailScreen() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 24 }}>
+      <Text style={styles.title}>
         {deck ? deck.title : 'Deck nicht gefunden'}
       </Text>
       <Button title="Zurück" onPress={() => router.push('/')}/>
