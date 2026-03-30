@@ -24,12 +24,8 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Willkommen zur Flashcard-App</Text>
-      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/create')}>
-        <Text style={styles.buttonText}>+ Deck erstellen</Text>
-      </TouchableOpacity>
 
-      <Text style={styles.subtitle}>Meine Decks</Text>
+      <Text style={styles.title}>Meine Decks</Text>
 
       <FlatList
         data={decks}
@@ -60,7 +56,7 @@ export default function HomeScreen() {
         )}
       />
       <TouchableOpacity style={styles.fab} onPress={() => router.push('/create')}>
-        <Ionicons name="add" size={28} color="#A600FF" />
+        <Ionicons name="add" size={28} color="#6A00A3" />
       </TouchableOpacity>
     </View>
   );

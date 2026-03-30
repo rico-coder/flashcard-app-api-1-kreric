@@ -11,16 +11,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         fontWeight: 'bold',
+        marginTop: 20,
         marginBottom: 30,
     },
-    subtitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginTop: 20,
-        marginBottom: 10,
-    },
     card: {
-        backgroundColor: '#4A90E2',
         borderRadius: 12,
         padding: 20,
         marginBottom: 16,
@@ -88,7 +82,7 @@ const styles = StyleSheet.create({
       marginBottom: 16,
     },
     backButton: {
-      backgroundColor: '#4A90E2',
+      backgroundColor: '#6A00A3',
       borderRadius: 12,
       padding: 14,
       alignItems: 'center',
