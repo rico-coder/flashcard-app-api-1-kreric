@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
@@ -113,6 +114,18 @@ const styles = StyleSheet.create({
       fontSize: 14,
       color: '#666',
       marginTop: 6,
+    },
+    fab: {
+      position: 'absolute',
+      bottom: 24,
+      right: 24,
+      backgroundColor: '#fff',
+      width: 56,
+      height: 56,
+      borderRadius: 28,
+      justifyContent: 'center',
+      alignItems: 'center',
+      elevation: 6,
     },
 });
 

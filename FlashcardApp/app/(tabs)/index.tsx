@@ -3,6 +3,7 @@ import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Alert } fro
 import { router, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles';
 
 export default function HomeScreen() {
@@ -58,6 +59,9 @@ export default function HomeScreen() {
           </TouchableOpacity>
         )}
       />
+      <TouchableOpacity style={styles.fab} onPress={() => router.push('/create')}>
+        <Ionicons name="add" size={28} color="#A600FF" />
+      </TouchableOpacity>
     </View>
   );
 }
