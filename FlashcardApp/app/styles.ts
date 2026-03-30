@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     createButton: {
-      backgroundColor: '#4A90E2',
+      backgroundColor: '#6A00A3',
       borderRadius: 12,
       padding: 14,
       alignItems: 'center',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
     button: {
-      backgroundColor: '#4A90E2',
+      backgroundColor: '#6A00A3',
       borderRadius: 12,
       padding: 14,
       alignItems: 'center',

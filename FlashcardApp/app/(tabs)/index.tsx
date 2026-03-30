@@ -49,7 +49,7 @@ export default function HomeScreen() {
           >
 
             <LinearGradient
-                colors={[item.color, '#3A80C2']}
+                colors={['#4C0075', '#6A00A3', '#8800D1', '#A600FF', '#B62EFF', '#C65CFF', '#D68AFF']}
                 style={styles.deckCard}
               >
               <Text style={styles.cardTitle}>{item.title}</Text>
