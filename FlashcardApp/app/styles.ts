@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     },
     deckCard: {
     flex: 1,
-    marginHorizontal: 20,
+    paddingHorizontal: 50,
+    marginHorizontal: 10,
     marginVertical: 10,
     padding: 30,
     borderRadius: 16,
