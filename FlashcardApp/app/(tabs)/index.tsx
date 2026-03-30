@@ -3,6 +3,7 @@ import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Alert } fro
 import { router, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles';
 
 export default function HomeScreen() {
@@ -23,12 +24,8 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Willkommen zur Flashcard-App</Text>
-      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/create')}>
-        <Text style={styles.buttonText}>+ Deck erstellen</Text>
-      </TouchableOpacity>
 
-      <Text style={styles.subtitle}>Meine Decks</Text>
+      <Text style={styles.title}>Meine Decks</Text>
 
       <FlatList
         data={decks}
@@ -49,7 +46,7 @@ export default function HomeScreen() {
           >
 
             <LinearGradient
-                colors={[item.color, '#3A80C2']}
+                colors={['#4C0075', '#6A00A3', '#8800D1', '#A600FF', '#B62EFF', '#C65CFF', '#D68AFF']}
                 style={styles.deckCard}
               >
               <Text style={styles.cardTitle}>{item.title}</Text>
@@ -58,6 +55,9 @@ export default function HomeScreen() {
           </TouchableOpacity>
         )}
       />
+      <TouchableOpacity style={styles.fab} onPress={() => router.push('/create')}>
+        <Ionicons name="add" size={28} color="#6A00A3" />
+      </TouchableOpacity>
     </View>
   );
 }
