@@ -52,3 +52,13 @@ Die Konzepte von Tag 2 wie useState, useEffect und FlatList waren bereits bekann
 - **Button stylen**: Der normale Button von React Native lässt sich kaum anpassen. Die Lösung ist TouchableOpacity + Text, das gibt volle Kontrolle über das Aussehen.
 
 - **Zurück-Button in der FlatList**: Wenn der Zurück-Button ausserhalb der FlatList steht, kann er bei vielen Karten hinter der Liste versteckt werden. Die Lösung war ListFooterComponent, damit scrollt der Button mit der Liste mit und ist immer sichtbar.
+
+## Zwischenergebnis
+
+![Day 3 index](img/day-3-index.png)
+
+![Day 3 create](img/day-3-create.png)
+
+![Day 3 deckid](img/day-3-deckid.png)
+
+![Day 3 longpress](img/day-3-longpress.png)
