@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LinearGradient } from 'expo-linear-gradient';
+import styles from './styles';
 
 export default function HomeScreen() {
 
@@ -22,49 +24,40 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Willkommen zur Flashcard-App</Text>
-      <Button title="Deck erstellen" onPress={() => router.push('/create')} />
+      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/create')}>
+        <Text style={styles.buttonText}>+ Deck erstellen</Text>
+      </TouchableOpacity>
 
       <Text style={styles.subtitle}>Meine Decks</Text>
 
       <FlatList
         data={decks}
+        numColumns={2}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => router.push(`/deck/${item.id}`)}>
-            <View style={styles.card}>
+          <TouchableOpacity
+            onPress={() => router.push(`/deck/${item.id}`)}
+            onLongPress={() => Alert.alert(
+                item.title,
+                'Was möchtest du tun?',
+                [
+                    { text: 'Bearbeiten', onPress: () => {} },
+                    { text: 'Löschen', onPress: () => {} },
+                    { text: 'Abbrechen', style: 'cancel' },
+                ]
+            )}
+          >
+
+            <LinearGradient
+                colors={[item.color, '#3A80C2']}
+                style={styles.deckCard}
+              >
               <Text style={styles.cardTitle}>{item.title}</Text>
-            </View>
+              <Text style={styles.deckCount}>0 Karten</Text>
+            </LinearGradient>
           </TouchableOpacity>
         )}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 12,
-  },
-  subtitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  card: {
-    backgroundColor: '#4A90E2',
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 16,
-  },
-  cardTitle: {
-    fontSize: 16,
-    color: '#fff',
-  },
-});
