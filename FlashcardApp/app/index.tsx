@@ -24,7 +24,9 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Willkommen zur Flashcard-App</Text>
-      <Button title="Deck erstellen" onPress={() => router.push('/create')} />
+      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/create')}>
+        <Text style={styles.buttonText}>+ Deck erstellen</Text>
+      </TouchableOpacity>
 
       <Text style={styles.subtitle}>Meine Decks</Text>
 
@@ -47,7 +49,7 @@ export default function HomeScreen() {
           >
 
             <LinearGradient
-                colors={[item.color, '#3A80C2', '#000']}
+                colors={[item.color, '#3A80C2']}
                 style={styles.deckCard}
               >
               <Text style={styles.cardTitle}>{item.title}</Text>
