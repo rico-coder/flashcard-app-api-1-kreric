@@ -3,7 +3,7 @@ import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, Alert } fro
 import { router, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
-import styles from './styles';
+import styles from '../styles';
 
 export default function HomeScreen() {
 
