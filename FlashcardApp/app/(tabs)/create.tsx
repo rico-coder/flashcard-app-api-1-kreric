@@ -48,9 +48,6 @@ export default function CreateDeckScreen() {
         <TouchableOpacity style={styles.button} onPress={saveDeck}>
             <Text style={styles.buttonText}>Erstellen</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/')}>
-            <Text style={styles.buttonText}>Zurück</Text>
-        </TouchableOpacity>
         </View>
   );
 }
