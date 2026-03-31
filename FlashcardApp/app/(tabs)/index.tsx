@@ -10,6 +10,12 @@ export default function HomeScreen() {
 
   const [decks, setDecks] = useState([]);
 
+  const deleteDeck = async (deckId: string) => {
+    const updated = decks.filter(d => d.id !== deckId);
+    await AsyncStorage.setItem('decks', JSON.stringify(updated));
+    setDecks(updated);
+  };
+
   useFocusEffect(
     React.useCallback(() => {
       const loadDecks = async () => {
@@ -38,19 +44,18 @@ export default function HomeScreen() {
                 item.title,
                 'Was möchtest du tun?',
                 [
-                    { text: 'Bearbeiten', onPress: () => {} },
-                    { text: 'Löschen', onPress: () => {} },
+                    { text: 'Löschen', onPress: () => deleteDeck(item.id) },
                     { text: 'Abbrechen', style: 'cancel' },
                 ]
             )}
           >
 
             <LinearGradient
-                colors={['#4C0075', '#6A00A3', '#8800D1', '#A600FF', '#B62EFF', '#C65CFF', '#D68AFF']}
+                colors={[item.color || '#4C0075', item.color + '88' || '#00000088']}
                 style={styles.deckCard}
               >
               <Text style={styles.cardTitle}>{item.title}</Text>
-              <Text style={styles.deckCount}>0 Karten</Text>
+              <Text style={styles.deckCount}>{item.cards?.length ?? 0} Karten</Text>
             </LinearGradient>
           </TouchableOpacity>
         )}

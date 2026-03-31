@@ -7,6 +7,11 @@ import styles from '../styles';
 export default function CreateDeckScreen() {
     const [title, setTitle] = useState('');
 
+    const getRandomColor = () => {
+      const colors = ['#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6', '#1ABC9C', '#E67E22', '#E91E63'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    };
+
     const saveDeck = async () => {
       if (!title.trim()) {
           Alert.alert('Fehler', 'Eingabe Feld leer')
@@ -20,7 +25,7 @@ export default function CreateDeckScreen() {
       const newDeck = {
         id: Date.now().toString(),
         title: title.trim(),
-        color: '#4A90E2',
+        color: getRandomColor(),
         cards: [
             { question: 'Was ist React Native?', answer: 'Ein Framework zur App-Entwicklung mit JavaScript.' },
             { question: 'Was macht useState?', answer: 'Es speichert lokale Zustände in einer Komponente.' },
@@ -42,9 +47,6 @@ export default function CreateDeckScreen() {
         <TextInput placeholder='Name des Decks' style={styles.input} value={title} onChangeText={(text) => setTitle(text)}></TextInput>
         <TouchableOpacity style={styles.button} onPress={saveDeck}>
             <Text style={styles.buttonText}>Erstellen</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/')}>
-            <Text style={styles.buttonText}>Zurück</Text>
         </TouchableOpacity>
         </View>
   );
