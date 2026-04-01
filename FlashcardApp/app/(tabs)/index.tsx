@@ -5,12 +5,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles';
+import DeckOptionsModal from '../../components/DeckOptionsModal'
 
 export default function HomeScreen() {
 
   const [decks, setDecks] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedDeck, setSelectedDeck] = useState(null);
 
   const deleteDeck = async (deckId: string) => {
+    const updated = decks.filter(d => d.id !== deckId);
+    await AsyncStorage.setItem('decks', JSON.stringify(updated));
+    setDecks(updated);
+  };
+
+  const handleSave = async (updatedDeck: any) => {
+    const updated = decks.map(d => d.id === updatedDeck.id ? updatedDeck : d);
+    await AsyncStorage.setItem('decks', JSON.stringify(updated));
+    setDecks(updated);
+  };
+
+  const handleDelete = async (deckId: string) => {
     const updated = decks.filter(d => d.id !== deckId);
     await AsyncStorage.setItem('decks', JSON.stringify(updated));
     setDecks(updated);
@@ -40,14 +55,10 @@ export default function HomeScreen() {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => router.push(`/deck/${item.id}`)}
-            onLongPress={() => Alert.alert(
-                item.title,
-                'Was möchtest du tun?',
-                [
-                    { text: 'Löschen', onPress: () => deleteDeck(item.id) },
-                    { text: 'Abbrechen', style: 'cancel' },
-                ]
-            )}
+            onLongPress={() => {
+              setSelectedDeck(item);
+              setModalVisible(true);
+            }}
           >
 
             <LinearGradient
@@ -63,6 +74,14 @@ export default function HomeScreen() {
       <TouchableOpacity style={styles.fab} onPress={() => router.push('/create')}>
         <Ionicons name="add" size={28} color="#6A00A3" />
       </TouchableOpacity>
+
+      <DeckOptionsModal
+        visible={modalVisible}
+        deck={selectedDeck}
+        onClose={() => setModalVisible(false)}
+        onSave={handleSave}
+        onDelete={handleDelete}
+      />
     </View>
   );
 }
