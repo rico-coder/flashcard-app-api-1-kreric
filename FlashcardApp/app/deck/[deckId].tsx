@@ -23,18 +23,14 @@ export default function DeckDetailScreen() {
       const loadDeck = async () => {
         setLoading(true);
         const data = await AsyncStorage.getItem('decks');
-
         if (data) {
           const decks = JSON.parse(data);
-          const found = decks.find((d) => d.id === deckId);
-
+          const found = decks.find((d: any) => d.id === deckId);
           setDeck(found);
           setCards(found?.cards || []);
         }
-
         setLoading(false);
       };
-
       loadDeck();
     }, [deckId])
   );
@@ -47,8 +43,7 @@ export default function DeckDetailScreen() {
 
     const data = await AsyncStorage.getItem('decks');
     const decks = JSON.parse(data);
-
-    const index = decks.findIndex((d) => d.id === deckId);
+    const index = decks.findIndex((d: any) => d.id === deckId);
 
     const newCard = {
       id: Date.now().toString(),
@@ -57,15 +52,27 @@ export default function DeckDetailScreen() {
     };
 
     decks[index].cards.push(newCard);
-
     await AsyncStorage.setItem('decks', JSON.stringify(decks));
 
     setCards(decks[index].cards);
     setDeck(decks[index]);
-
     setQuestion('');
     setAnswer('');
     setModalVisible(false);
+  };
+
+  const deleteCard = async (index: number) => {
+    const updatedCards = cards.filter((_, i) => i !== index);
+    const updatedDeck = { ...deck, cards: updatedCards };
+
+    const data = await AsyncStorage.getItem('decks');
+    if (data) {
+      const decks = JSON.parse(data);
+      const updatedDecks = decks.map((d: any) => d.id === deck.id ? updatedDeck : d);
+      await AsyncStorage.setItem('decks', JSON.stringify(updatedDecks));
+    }
+
+    setCards(updatedCards);
   };
 
   if (loading) {
@@ -78,21 +85,34 @@ export default function DeckDetailScreen() {
 
   return (
     <View style={styles.detailContainer}>
-      <Text style={styles.detailTitle}>{deck.title}</Text>
+      <Text style={styles.subtitle}>{deck.title} – {cards.length} Karten</Text>
 
       <FlatList
         data={cards}
         keyExtractor={(item, index) => item.id ?? index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.cardItem}>
-            <Text style={styles.cardQuestion}>{item.question}</Text>
-            <Text style={styles.cardAnswer}>{item.answer}</Text>
-          </View>
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onLongPress={() => Alert.alert(
+              'Karte löschen',
+              'Willst du diese Karte löschen?',
+              [
+                { text: 'Abbrechen', style: 'cancel' },
+                { text: 'Löschen', style: 'destructive', onPress: () => deleteCard(index) },
+              ]
+            )}
+          >
+            <View style={styles.cardItem}>
+              <Text style={styles.cardQuestion}>{item.question}</Text>
+              <Text style={styles.cardAnswer}>{item.answer}</Text>
+            </View>
+          </TouchableOpacity>
         )}
+        ListFooterComponent={
+          <TouchableOpacity style={styles.backButton} onPress={() => router.push('/')}>
+            <Text style={styles.backButtonText}>Zurück</Text>
+          </TouchableOpacity>
+        }
       />
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/')}>
-        <Text style={styles.backButtonText}>Zurück</Text>
-      </TouchableOpacity>
 
       <TouchableOpacity style={styles.fabAdd} onPress={() => setModalVisible(true)}>
         <Ionicons name="add" size={28} color="#6A00A3" />
@@ -131,7 +151,7 @@ export default function DeckDetailScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.cancelButton} onPress={() => setModalVisible(false)}>
-                <Text style={styles.cancelButtonText}>Abbrechen</Text>
+              <Text style={styles.cancelButtonText}>Abbrechen</Text>
             </TouchableOpacity>
           </View>
         </View>
