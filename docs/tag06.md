@@ -69,3 +69,15 @@ Die Farbkreise mit .map() waren eine elegante Lösung – statt sechs einzelne B
 - **Falscher Importpfad**: DeckOptionsModal.tsx lag im components/-Ordner, aber der Import zeigte auf '../styles' was nicht existiert. Die Lösung war den Pfad auf '../app/styles' anzupassen, da styles.ts im app/-Ordner liegt. Langfristig wäre es sauberer, styles.ts im Root-Ordner zu haben.
 
 - **Daten zwischen Komponenten übergeben**: Das Modal ändert Titel und Farbe lokal, aber die eigentliche Speicherung passiert in index.tsx. Dafür werden onSave und onDelete als Props übergeben – Funktionen die von aussen kommen und im Modal aufgerufen werden.
+
+## Zwischenergebnis
+
+![Day 6 index](img/day-6-index.png)
+
+![Day 6 modal](img/day-6-modal.png)
+
+![Day 6 create](img/day-6-create.png)
+
+![Day 6 cards](img/day-6-cards.png)
+
+![Day 6 delete cards](img/day-6-delete-cards.png)
