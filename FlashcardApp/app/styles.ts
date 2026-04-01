@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 
         elevation: 2,
       },
-
     deckCard: {
         flex: 1,
         paddingHorizontal: 50,
@@ -166,6 +165,59 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
 
         elevation: 6,
+    },
+    overlay: {
+        flex: 1,
+        backgroundColor: '#00000066',
+        justifyContent: 'center',
+        padding: 24,
+    },
+    modalBox: {
+        backgroundColor: '#fff',
+        borderRadius: 16,
+        padding: 24,
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 16,
+        color: '#222',
+    },
+    colorRow: {
+        flexDirection: 'row',
+        gap: 12,
+        marginVertical: 16,
+    },
+    colorCircle: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        borderWidth: 2,
+        borderColor: 'transparent',
+    },
+    cardItem: {
+      backgroundColor: '#fff',
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 12,
+      elevation: 2,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+    },
+    cardQuestion: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: '#222',
+      marginBottom: 8,
+    },
+    cardAnswer: {
+      fontSize: 14,
+      color: '#666',
+      borderTopWidth: 1,
+      borderTopColor: '#eee',
+      paddingTop: 8,
     },
 });
 
